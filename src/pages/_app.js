@@ -1,5 +1,5 @@
 import '@/styles/globals.css'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ThemeProvider } from 'next-themes';
 
 import ThemeChanger from '@/components/ThemeChanger';
@@ -9,10 +9,19 @@ import Layout3 from '@/layouts/Layout1'
 
 export default function App({ Component, pageProps }) {
   const [theme, setTheme] = useState("light");
-
+ 
   const getCurrTheme = (theme) => {
     setTheme(theme)
+    // // saving theme when select the theme type
+    // axios.post('/api/save_theme',{ theme });
   }
+
+  // initial load theme with api
+  useEffect(async ()=>{
+    // const res = await axios.get('/api/get_theme');
+    // const settingData = res.data;
+    // setTheme(settingData.theme)
+  },[])
 
   return (
     <ThemeProvider>
